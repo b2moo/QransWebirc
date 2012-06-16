@@ -3,6 +3,8 @@ import dependencies
 dependencies.vcheck()
 
 import pages, os, subprocess, pagegen, shutil, sys, time
+import config
+os.chdir(config.BASE_PATH)
 
 COPYRIGHT = open("js/copyright.js", "rb").read()
 

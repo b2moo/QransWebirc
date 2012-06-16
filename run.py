@@ -7,6 +7,7 @@ DEFAULT_PORT = 9090
 
 from optparse import OptionParser
 import sys, os, config
+os.chdir(config.BASE_PATH)
 
 def run_twistd(args1=None, args2=None):
   from twisted.scripts.twistd import run
