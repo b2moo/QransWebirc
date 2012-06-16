@@ -1,10 +1,11 @@
+var l = qwebirc.ui.lang;
 qwebirc.ui.UI_COMMANDS = [
-  ["Options", "options"],
-  ["Add webchat to your site", "embedded"],
-  ["Privacy policy", "privacy"],
-  ["Feedback", "feedback"],
-  ["Frequently asked questions", "faq"],
-  ["About qwebirc", "about"]
+  [l.menu_options, "options"],
+  [l.menu_add_webchat, "embedded"],
+  [l.menu_privpolicy, "privacy"],
+  [l.menu_feedback, "feedback"],
+  [l.menu_faq, "faq"],
+  [l.menu_about, "about"]
 ];
 
 qwebirc.ui.MENU_ITEMS = function() {

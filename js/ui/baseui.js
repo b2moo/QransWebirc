@@ -325,24 +325,27 @@ qwebirc.ui.StandardUI = new Class({
     d.setSubWindow(ew);
   },
   embeddedWindow: function() {
-    this.addCustomWindow("Add webchat to your site", qwebirc.ui.EmbedWizard, "embeddedwizard", {baseURL: this.options.baseURL, uiOptions: this.uiOptions, optionsCallback: function() {
+    this.addCustomWindow(qwebirc.ui.lang.add_webchat, qwebirc.ui.EmbedWizard, "embeddedwizard", {baseURL: this.options.baseURL, uiOptions: this.uiOptions, optionsCallback: function() {
       this.optionsWindow();
     }.bind(this)});
   },
   optionsWindow: function() {
-    this.addCustomWindow("Options", qwebirc.ui.OptionsPane, "optionspane", this.uiOptions);
+    this.addCustomWindow(qwebirc.ui.lang.options, qwebirc.ui.OptionsPane, "optionspane", this.uiOptions);
   },
   aboutWindow: function() {
-    this.addCustomWindow("About", qwebirc.ui.AboutPane, "aboutpane", this.uiOptions);
+    this.addCustomWindow(qwebirc.ui.lang.about, qwebirc.ui.AboutPane, "aboutpane", this.uiOptions);
   },
   privacyWindow: function() {
-    this.addCustomWindow("Privacy policy", qwebirc.ui.PrivacyPolicyPane, "privacypolicypane", this.uiOptions);
+    this.addCustomWindow(qwebirc.ui.lang.privpolicy, qwebirc.ui.PrivacyPolicyPane, "privacypolicypane", this.uiOptions);
   },
   feedbackWindow: function() {
-    this.addCustomWindow("Feedback", qwebirc.ui.FeedbackPane, "feedbackpane", this.uiOptions);
+    this.addCustomWindow(qwebirc.ui.lang.feedback, qwebirc.ui.FeedbackPane, "feedbackpane", this.uiOptions);
   },
   faqWindow: function() {
-    this.addCustomWindow("FAQ", qwebirc.ui.FAQPane, "faqpane", this.uiOptions);
+    this.addCustomWindow(qwebirc.ui.lang.faq, qwebirc.ui.FAQPane, "faqpane", this.uiOptions);
+  },
+  wiki_ircWindow: function () {
+    window.open('/');
   },
   urlDispatcher: function(name, window) {
     if(name == "embedded")
@@ -442,7 +445,7 @@ qwebirc.ui.NewLoginUI = new Class({
     this.postInitialize();
 
     /* I'd prefer something shorter and snappier! */
-    var w = this.newCustomWindow("Connection details", true, qwebirc.ui.WINDOW_CONNECT);
+    var w = this.newCustomWindow(qwebirc.ui.lang.connection_details, true, qwebirc.ui.WINDOW_CONNECT);
     var callback = function(args) {
       w.close();
       callbackfn(args);

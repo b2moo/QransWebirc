@@ -4,7 +4,7 @@ import qwebirc.util.qjson as json
 def get_options():
   options = dict(
     networkName=config.NETWORK_NAME,
-    networkServices=[config.AUTH_SERVICE],
+    networkServices=[config.AUTH_SERVICE] if config.AUTH_SERVICE else [],
     loginRegex=config.AUTH_OK_REGEX,
     appTitle=config.APP_TITLE,
     baseURL=config.BASE_URL,

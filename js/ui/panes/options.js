@@ -13,8 +13,9 @@ qwebirc.ui.supportsFocus = function() {
  * Note that options are settable by the uioptions url arg by default unless you specifiy
  * settableByURL...
  */
+var c = qwebirc.ui.lang.config;
 qwebirc.config.DEFAULT_OPTIONS = [
-  [1, "BEEP_ON_MENTION", "Beep when nick mentioned or on query activity (requires Flash)", true, {
+  [1, "BEEP_ON_MENTION", c.beep_on_mention, true, {
     enabled: function() {
       if(!$defined(Browser.Plugins.Flash) || Browser.Plugins.Flash.version < 8)
         return [false, false]; /* [disabled, default_value] */
@@ -25,33 +26,33 @@ qwebirc.config.DEFAULT_OPTIONS = [
         ui.setBeepOnMention(value);
     }
   }],
-  [7, "FLASH_ON_MENTION", "Flash titlebar when nick mentioned or on query activity", true, {
+  [7, "FLASH_ON_MENTION", c.flash_on_mention, true, {
     enabled: qwebirc.ui.supportsFocus
   }],
-  [2, "DEDICATED_MSG_WINDOW", "Send privmsgs to dedicated messages window", false],
-  [4, "DEDICATED_NOTICE_WINDOW", "Send notices to dedicated message window", false],
-  [3, "NICK_OV_STATUS", "Show status (@/+) before nicknames in channel lines", true],
-  [5, "ACCEPT_SERVICE_INVITES", "Automatically join channels when invited by Q", true, {
+  [2, "DEDICATED_MSG_WINDOW", c.dedicated_msg_window, false],
+  [4, "DEDICATED_NOTICE_WINDOW", c.dedicated_notice_window, false],
+  [3, "NICK_OV_STATUS", c.nick_ov_status, true],
+  [5, "ACCEPT_SERVICE_INVITES", c.accept_service_invites, true, {
     settableByURL: false
   }],
-  [6, "USE_HIDDENHOST", "Hide your hostmask when authed to Q (+x)", true, {
+  [6, "USE_HIDDENHOST", c.use_hiddenhost, true, {
     settableByURL: false
   }],
-  [8, "LASTPOS_LINE", "Show a last position indicator for each window", true, {
+  [8, "LASTPOS_LINE", c.lastpos_line, true, {
     enabled: qwebirc.ui.supportsFocus
   }],
-  [9, "NICK_COLOURS", "Automatically colour nicknames", false],
-  [10, "HIDE_JOINPARTS", "Hide JOINS/PARTS/QUITS", false],
-  [11, "STYLE_HUE", "Adjust user interface hue", function() {
-    return {class_: qwebirc.config.HueOption, default_: 210};
+  [9, "NICK_COLOURS", c.nick_colours, false],
+  [10, "HIDE_JOINPARTS", c.hide_joinparts, false],
+  [11, "STYLE_HUE", c.style_hue, function() {
+    return {class_: qwebirc.config.HueOption, default_: 250};
   }, {
     applyChanges: function(value, ui) {
       ui.setModifiableStylesheetValues({hue: value});
     }
   }],
-  [12, "QUERY_ON_NICK_CLICK", "Query on nickname click in channel", false],
-  [13, "SHOW_NICKLIST", "Show nickname list in channels", true],
-  [14, "SHOW_TIMESTAMPS", "Show timestamps", true] /* we rely on the hue update */
+  [12, "QUERY_ON_NICK_CLICK", c.query_on_nick_click, false],
+  [13, "SHOW_NICKLIST", c.show_nicklist, true],
+  [14, "SHOW_TIMESTAMPS", c.show_timestamps, true] /* we rely on the hue update */
 ];
 
 qwebirc.config.DefaultOptions = null;
@@ -379,7 +380,7 @@ qwebirc.ui.OptionsPane = new Class({
     var cella = FE("td", r);
     var cellb = FE("td", r);
     var save = qwebirc.util.createInput("submit", cellb);
-    save.value = "Save";
+    save.value = qwebirc.ui.lang.save;
     
     save.addEvent("click", function() {
       this.save();
@@ -387,7 +388,7 @@ qwebirc.ui.OptionsPane = new Class({
     }.bind(this));
     
     var cancel = qwebirc.util.createInput("submit", cellb);
-    cancel.value = "Cancel";
+    cancel.value = qwebirc.ui.lang.cancel;
     cancel.addEvent("click", function() {
       this.cancel();
       this.fireEvent("close");

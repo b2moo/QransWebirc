@@ -42,11 +42,11 @@ qwebirc.ui.ConfirmBox = function(parentElement, callback, initialNickname, initi
   
   var c = initialChannels.split(" ")[0].split(",");
   
-  text.appendChild(document.createTextNode("To connect to " + networkName + " IRC and join channel" + ((c.length>1)?"s":"") + " "));
+  text.appendChild(document.createTextNode(qwebirc.ui.lang.to_connect(networkName,c)));
 
   for(var i=0;i<c.length;i++) {
     if((c.length > 1) && (i == c.length - 1)) {
-      text.appendChild(document.createTextNode(" and "));
+      text.appendChild(document.createTextNode(" " + qwebirc.ui.lang.and + " "));
     } else if(i > 0) {
       text.appendChild(document.createTextNode(", "));
     }
@@ -55,11 +55,11 @@ qwebirc.ui.ConfirmBox = function(parentElement, callback, initialNickname, initi
   }
   
   if(!autoNick) {
-    text.appendChild(document.createTextNode(" as "));
+    text.appendChild(document.createTextNode(" " + qweb.ui.lang.as + " "));
     text.appendChild(nick);
   }
   
-  text.appendChild(document.createTextNode(" click 'Connect'."));
+  text.appendChild(document.createTextNode(" " + qwebirc.ui.lang.clickconnect));
   text.appendChild(new Element("br"));
   if(qwebirc.auth.enabled() && qwebirc.auth.quakeNetAuth() && !qwebirc.auth.loggedin())
     text.appendChild(document.createTextNode("If you'd like to connect using your Q auth click 'Log in'."));
@@ -112,7 +112,7 @@ qwebirc.ui.LoginBox = function(parentElement, callback, initialNickname, initial
   
   var td = new Element("td");
   tr.appendChild(td);
-  td.set("html", "<h1>Connect to " + networkName + " IRC</h1>");  
+  td.set("html", "<h1>" + qwebirc.ui.lang.connectto(networkName) + "</h1>");  
     
   var tr = new Element("tr");
   tbody.appendChild(tr);
@@ -153,14 +153,14 @@ qwebirc.ui.LoginBox = function(parentElement, callback, initialNickname, initial
   }
 
   var nick = new Element("input");
-  createRow("Nickname:", nick);
+  createRow(qwebirc.ui.lang.nick + ":", nick);
   
   var chanStyle = null;
   if(qwebirc.auth.enabled() && qwebirc.auth.bouncerAuth())
     chanStyle = {display: "none"};
   
   var chan = new Element("input");
-  createRow("Channels:", chan, chanStyle);
+  createRow(qwebirc.ui.lang.channels + ":", chan, chanStyle);
 
   if(qwebirc.auth.enabled()) {
     if(qwebirc.auth.passAuth()) {
@@ -168,20 +168,20 @@ qwebirc.ui.LoginBox = function(parentElement, callback, initialNickname, initial
       var authCheckBox = qwebirc.util.createInput("checkbox", authRow, "connect_auth_to_services", false);
     
       var usernameBox = new Element("input");
-      var usernameRow = createRow("Username:", usernameBox, {display: "none"})[0];
+      var usernameRow = createRow(qwebirc.ui.lang.username + ":", usernameBox, {display: "none"})[0];
     
-      var passwordRow = createRow("Password:", null, {display: "none"});
+      var passwordRow = createRow(qwebirc.ui.lang.password + ":", null, {display: "none"});
       var passwordBox = qwebirc.util.createInput("password", passwordRow[1], "connect_auth_password");
 
       authCheckBox.addEvent("click", function(e) { qwebirc.ui.authShowHide(authCheckBox, authRow, usernameBox, usernameRow, passwordRow[0]) });
     } else if(qwebirc.auth.bouncerAuth()) {
-      var passwordRow = createRow("Password:");
+      var passwordRow = createRow(qwebirc.ui.lang.password + ":");
       var passwordBox = qwebirc.util.createInput("password", passwordRow, "connect_auth_password");
     }
   }
   
   var connbutton = new Element("input", {"type": "submit"});
-  connbutton.set("value", "Connect");
+  connbutton.set("value", qwebirc.ui.lang.connect);
   var r = createRow(undefined, connbutton);
   
   if(qwebirc.auth.enabled() && qwebirc.auth.quakeNetAuth() && !qwebirc.auth.loggedin()) {
@@ -198,7 +198,7 @@ qwebirc.ui.LoginBox = function(parentElement, callback, initialNickname, initial
       chans = "";
 
     if(!nickname) {
-      alert("You must supply a nickname.");
+      alert(qwebirc.ui.lang.nickrequired);
       nick.focus();
       return;
     }

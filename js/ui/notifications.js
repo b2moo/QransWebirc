@@ -88,7 +88,7 @@ qwebirc.ui.Flasher = new Class({
     var flashA = function() {
       this.hideFavIcon();
       this.canUpdateTitle = false;
-      document.title = "Activity!";
+      document.title = qwebirc.ui.lang.activity;
       
       this.flasher = flashB.delay(500);
     }.bind(this);
