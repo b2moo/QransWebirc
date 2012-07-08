@@ -1,0 +1,9 @@
+*.pyc
+/.checked
+/.compiled
+/static/css/*
+/static/js/qui-*.js
+/static/qui.html
+/static/quidebug.html
+/twistd.pid
+/twisted/plugins/dropin.cache
