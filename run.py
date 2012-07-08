@@ -1,13 +1,14 @@
 #!/usr/bin/env python
 # this entire thing is a hack and badly needs reimplementing
+import sys, os, config
+os.chdir(config.BASE_PATH)
+
 import bin.compile
 bin.compile.vcheck()
 
 DEFAULT_PORT = 9090
 
 from optparse import OptionParser
-import sys, os, config
-os.chdir(config.BASE_PATH)
 
 def run_twistd(args1=None, args2=None):
   from twisted.scripts.twistd import run
