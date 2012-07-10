@@ -12,6 +12,12 @@ def get_options():
     dynamicBaseURL=config.DYNAMIC_BASE_URL,
     validateNickname=False
   )
+
+  if hasattr(config, "SUGGESTED_CHANNELS"):
+    options['suggestedChannels'] = config.SUGGESTED_CHANNELS
+  else:
+    options['suggestedChannels'] = dict()
+  
   
   if hasattr(config, "NICKNAME_VALIDATE") and config.NICKNAME_VALIDATE:
     options["nickValidation"] = dict(

@@ -159,8 +159,24 @@ qwebirc.ui.LoginBox = function(parentElement, callback, initialNickname, initial
   if(qwebirc.auth.enabled() && qwebirc.auth.bouncerAuth())
     chanStyle = {display: "none"};
   
+  //On fait une selectbox pour les chans prédéfinis
+  suggestedChannels = window.ui.options.suggestedChannels;
+  var multichan = new Element("select");
+  multichan.set('multiple','multiple');
+  for( var ch in suggestedChannels ) {
+    var option = new Element("option");
+    option.set("value", ch);
+    option.set("text", ch + ': ' + suggestedChannels[ch]);
+    multichan.appendChild(option);
+  }
   var chan = new Element("input");
-  createRow(qwebirc.ui.lang.channels + ":", chan, chanStyle);
+
+  if( multichan.childNodes.length > 0) {
+    createRow(qwebirc.ui.lang.channels + ':', multichan);
+    createRow(qwebirc.ui.lang.otherChannels + ":", chan, chanStyle);
+  }
+  else
+    createRow(qwebirc.ui.lang.channels + ":", chan, chanStyle);
 
   if(qwebirc.auth.enabled()) {
     if(qwebirc.auth.passAuth()) {
@@ -194,6 +210,11 @@ qwebirc.ui.LoginBox = function(parentElement, callback, initialNickname, initial
     new Event(e).stop();
     var nickname = nick.value;
     var chans = chan.value;
+
+    for( var i = 0; i < multichan.childNodes.length; i++)
+        if( multichan.childNodes[i].selected )
+            chans += (chans?',':'') + multichan.childNodes[i].value;
+
     if(chans == "#") /* sorry channel "#" :P */
       chans = "";
 

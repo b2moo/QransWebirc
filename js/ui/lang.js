@@ -48,6 +48,7 @@
     l.ctcpreply = "Réponse CTCP $x de $N: $m"; //"CTCP $x reply from $N: $m"
     l.realname = "Nom réel"; //realname
     l.channels = "Canaux";
+    l.otherChannels = "Autres";
     l.server = "Serveur";
     l.account = "Compte";
     l.idle = "Occupé";

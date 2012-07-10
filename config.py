@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 # qwebirc configuration file
 #
 # This a Python program that is imported, so feel free to use any
@@ -272,6 +273,13 @@ DYNAMIC_BASE_URL = "/web/"
 #         the system's default resolver(s).
 CONNECTION_RESOLVER = None
 
+# OPTION: SUGGESTED_CHANNELS
+SUGGESTED_CHANNELS = {
+    '#crans': u'Discuter crans/signaler un problème',
+    '#general': u'Autres discussions',
+    '#flood': u'Flooder !',
+    '#bot': 'Tester vos bots ici',
+}
 # QUAKENET SPECIFIC VALUES
 # ---------------------------------------------------------------------
 #
