@@ -2,7 +2,7 @@ server {
     listen          80;
     server_name     web-irc.crans.org;
 
-    rewrite ^/(.*) http://irc.crans.org/$1 permanent;
+    rewrite ^/(.*) http://irc.crans.org/web/ permanent;
 }
 
 server {
