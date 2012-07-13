@@ -13,7 +13,7 @@ qwebirc.ui.Interface = new Class({
   options: {
     initialNickname: "qwebirc" + Math.ceil(Math.random() * 100000),
     initialChannels: "",
-    suggestedChannels: [['#bla','hey !']],
+    suggestedChannels: {},
     networkName: "ExampleNetwork",
     networkServices: [],
     loginRegex: null,
