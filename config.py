@@ -278,7 +278,7 @@ SUGGESTED_CHANNELS = {
     '#crans': u'Discuter crans/signaler un problème',
     '#general': u'Autres discussions',
     '#flood': u'Flooder !',
-    '#bot': 'Tester vos bots ici',
+#    '#bot': 'Tester vos bots ici',
 }
 # QUAKENET SPECIFIC VALUES
 # ---------------------------------------------------------------------
